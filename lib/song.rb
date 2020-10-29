@@ -1,3 +1,4 @@
+require 'pry'
 class Song
   attr_accessor :name, :artist_name
   @@all = []
@@ -44,21 +45,32 @@ class Song
     end
   end
 
+
   def self.new_from_filename(filename)
-# "Taylor Swift - Blank Space.mp3"
-    file = filename.split(/- | .mp3/)
-    file.collect do |word|
+    file = filename.split(/-|.mp3/)
+    good_file = file.collect do |word|
+      word.strip
+    end
+    song = self.new
+
+    song.artist_name = good_file[0]
+    song.name = good_file[1]
+    song
+  end
+
+  def self.create_from_filename(filename)
+    file = filename.split(/-|.mp3/)
+    good_file = file.collect do |word|
       word.strip
     end
     song = self.create
 
-    song.artist_name = file[0]
-    song.name = find[1]
-
+    song.artist_name = good_file[0]
+    song.name = good_file[1]
+    song
   end
 
-
-
+  def
 
 
 end
